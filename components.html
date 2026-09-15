@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buttons — Hazel Sellote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="icon" href="assets/logo.jpg" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  body { cursor: auto; }
+  body, body * { cursor: auto !important; }
+  .spec { min-height: 100vh; padding: 40px 32px 64px;
+          background-color: var(--canvas);
+          background-image: radial-gradient(var(--dot) 1.1px, transparent 1.1px);
+          background-size: 18px 18px; background-position: -9px -9px; }
+  .spec__wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+  .spec__head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .spec__head h1 { font-weight: 600; font-size: 30px; letter-spacing: -0.02em; }
+  .row { display: flex; align-items: flex-end; gap: 26px; flex-wrap: wrap; margin-top: 16px; }
+  .item { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; }
+  .item__meta { font-family: var(--mono); font-size: 9px; letter-spacing: 0.11em;
+                text-transform: uppercase; color: var(--faint); }
+  table { border-collapse: collapse; width: 100%; margin-top: 14px; font-size: 13px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line-soft); }
+  th { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em;
+       text-transform: uppercase; color: var(--faint); font-weight: 400; }
+  td.k { font-family: var(--mono); font-size: 11.5px; color: #4B5745; }
+</style>
+</head>
+<body>
+
+<div class="spec">
+  <div class="spec__wrap">
+
+    <div class="spec__head">
+      <span class="mono side__label">Design system</span>
+      <h1>Buttons</h1>
+      <span class="mono top__count">4 sizes · 2 variants · FAB</span>
+    </div>
+
+    <div class="card">
+      <div class="mono side__label">Primary</div>
+      <p class="body">Solid matcha fill for the one action you want taken on a screen.</p>
+      <div class="row">
+        <div class="item"><button class="btn btn--xs btn--primary" type="button">Get in touch</button><span class="item__meta">XS · 28px</span></div>
+        <div class="item"><button class="btn btn--s btn--primary" type="button">Get in touch</button><span class="item__meta">S · 34px</span></div>
+        <div class="item"><button class="btn btn--m btn--primary" type="button">Get in touch</button><span class="item__meta">M · 40px</span></div>
+        <div class="item"><button class="btn btn--l btn--primary" type="button">Get in touch</button><span class="item__meta">L · 48px</span></div>
+        <div class="item"><button class="btn btn--m btn--primary" type="button" disabled>Get in touch</button><span class="item__meta">M · disabled</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="mono side__label">Secondary</div>
+      <p class="body">Outlined, for the alternative next to a primary — never two primaries side by side.</p>
+      <div class="row">
+        <div class="item"><button class="btn btn--xs btn--secondary" type="button">View work</button><span class="item__meta">XS · 28px</span></div>
+        <div class="item"><button class="btn btn--s btn--secondary" type="button">View work</button><span class="item__meta">S · 34px</span></div>
+        <div class="item"><button class="btn btn--m btn--secondary" type="button">View work</button><span class="item__meta">M · 40px</span></div>
+        <div class="item"><button class="btn btn--l btn--secondary" type="button">View work</button><span class="item__meta">L · 48px</span></div>
+        <div class="item"><button class="btn btn--m btn--secondary" type="button" disabled>View work</button><span class="item__meta">M · disabled</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="mono side__label">Pairing</div>
+      <p class="body">Primary leads, secondary follows, matched at the same size.</p>
+      <div class="row">
+        <div class="item">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <button class="btn btn--m btn--primary" type="button">Get in touch</button>
+            <button class="btn btn--m btn--secondary" type="button">Download resume</button>
+          </div>
+          <span class="item__meta">M · primary + secondary</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="mono side__label">Floating action button</div>
+      <p class="body">Circular, one per screen, pinned above the content for the single persistent action.</p>
+      <div class="row">
+        <div class="item"><button class="fab fab--mini" type="button" aria-label="Add">+</button><span class="item__meta">Mini · 40px</span></div>
+        <div class="item"><button class="fab" type="button" aria-label="Add">+</button><span class="item__meta">Default · 56px</span></div>
+        <div class="item"><button class="fab fab--extended" type="button">+ New project</button><span class="item__meta">Extended · 56px</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="mono side__label">Specs</div>
+      <table>
+        <thead>
+          <tr><th>Size</th><th>Class</th><th>Height</th><th>Padding</th><th>Type</th><th>Radius</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td class="k">.btn--xs</td><td class="k">28px</td><td class="k">0 10px</td><td class="k">11px / 500</td><td class="k">7px</td></tr>
+          <tr><td>S</td><td class="k">.btn--s</td><td class="k">34px</td><td class="k">0 13px</td><td class="k">12.5px / 500</td><td class="k">8px</td></tr>
+          <tr><td>M</td><td class="k">.btn--m</td><td class="k">40px</td><td class="k">0 16px</td><td class="k">14px / 500</td><td class="k">9px</td></tr>
+          <tr><td>L</td><td class="k">.btn--l</td><td class="k">48px</td><td class="k">0 22px</td><td class="k">15.5px / 500</td><td class="k">11px</td></tr>
+          <tr><td>FAB mini</td><td class="k">.fab--mini</td><td class="k">40 × 40px</td><td class="k">—</td><td class="k">17px icon</td><td class="k">50%</td></tr>
+          <tr><td>FAB</td><td class="k">.fab</td><td class="k">56 × 56px</td><td class="k">—</td><td class="k">22px icon</td><td class="k">50%</td></tr>
+          <tr><td>FAB extended</td><td class="k">.fab--extended</td><td class="k">56px</td><td class="k">0 22px</td><td class="k">15px / 500</td><td class="k">28px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="mono side__label">Colour</div>
+      <table>
+        <thead>
+          <tr><th>Role</th><th>Rest</th><th>Hover</th><th>Text</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Primary</td><td class="k">--green-ink #4E7A34</td><td class="k">--green-deep #3C5F27</td><td class="k">--white</td></tr>
+          <tr><td>Secondary</td><td class="k">--white, 1px --green-ink</td><td class="k">--hover #85B167</td><td class="k">--green-ink → --white</td></tr>
+          <tr><td>FAB</td><td class="k">--green-ink #4E7A34</td><td class="k">--green-deep, −2px lift</td><td class="k">--white</td></tr>
+          <tr><td>Disabled</td><td class="k">opacity 0.42</td><td class="k">—</td><td class="k">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

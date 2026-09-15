@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hazel Sellote — UX Designer</title>
+<meta name="description" content="Senior UI/UX Designer based in Cebu City, Philippines — crafting intuitive, high-impact web and mobile experiences." />
+<script>
+  // set the theme before first paint so the shell never flashes the wrong one
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('hz-theme'); } catch (e) {}
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    if (t === 'dark') document.documentElement.classList.add('dark');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="stylesheet" href="dist/haze.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="side">
+    <div class="side__id">
+      <img class="side__mark" src="assets/logo.jpg" alt="Hazel Sellote monogram" />
+      <div class="side__who">
+        <div class="side__name">Hazel Sellote</div>
+        <div class="mono side__role">UX Designer</div>
+      </div>
+    </div>
+
+    <nav class="side__group">
+      <div class="mono side__label">Workspace</div>
+      <div class="nav" id="nav"></div>
+    </nav>
+
+    <div class="side__group side__group--files" id="railGroup">
+      <button class="mono side__label side__toggle" type="button" id="railToggle" aria-expanded="true" aria-controls="rail">
+        <span class="side__chev" aria-hidden="true">▾</span>
+        <span class="side__toggle-label">Case Studies</span>
+        <span class="nav__count" id="railCount"></span>
+      </button>
+      <div class="rail" id="rail"></div>
+    </div>
+
+    <div class="side__foot">
+      <div class="badge"><span class="dot dot--live"></span><span class="mono">Open to new work</span></div>
+      <a class="btn-resume" href="assets/hazel-sellote-resume.pdf" target="_blank" rel="noopener">
+        <span>Resume</span><span class="mono">PDF ↗</span>
+      </a>
+    </div>
+  </aside>
+
+  <div class="shell">
+
+    <header class="top">
+      <div class="top__crumb">
+        <span class="mono top__root">Portfolio /</span>
+        <span class="top__view" id="viewLabel">Overview</span>
+        <span class="mono top__count" id="viewCount">01 / 06</span>
+      </div>
+      <button class="top__search" type="button" id="paletteOpen">
+        <span>Jump to…</span><kbd class="mono">⌘K</kbd>
+      </button>
+      <button class="top__theme" type="button" id="themeToggle" aria-label="Switch to dark mode" title="Switch theme">
+          <span id="themeIcon" aria-hidden="true">☾</span>
+        </button>
+      <a class="top__cta" href="mailto:soriahazel16@gmail.com">Get in touch</a>
+    </header>
+
+    <main class="canvas" id="canvas">
+      <div class="stack">
+
+        <section class="view" data-view="overview" data-screen-label="Overview">
+          <div class="card hero">
+            <div class="mono hero__eyebrow">Cebu City, PH · 11 years</div>
+            <h1 class="hero__title">I design <span class="accent" id="rotator">intuitive</span><span class="caret">|</span><br />products for web and mobile.</h1>
+            <p class="hero__sub">Turning complex business requirements into scalable, user-centered design — with Figma, the Adobe suite, and AI-assisted workflows.</p>
+            <p class="script">currently: design systems &amp; AI-assisted research</p>
+            <div class="stats">
+              <div class="stat"><div class="stat__v">8</div><div class="mono stat__k">Years</div></div>
+              <div class="stat"><div class="stat__v">12</div><div class="mono stat__k">Case studies</div></div>
+              <div class="stat"><div class="stat__v">GMT+8</div><div class="mono stat__k">Timezone</div></div>
+            </div>
+          </div>
+
+          <div class="tiles">
+            <figure class="tile"><img src="assets/tile-1.jpg" alt="Research board" /></figure>
+            <figure class="tile"><img src="assets/tile-2.jpg" alt="SaaS dashboard" /></figure>
+            <figure class="tile"><img src="assets/tile-3.jpg" alt="Mobile flow" /></figure>
+            <figure class="tile"><a href="https://haze-design-system.vercel.app/" target="_blank" rel="noopener" aria-label="Haze Design System (opens in a new tab)"><img src="assets/tile-design-system.png" alt="Haze Design System — colour foundations" /></a></figure>
+          </div>
+
+          <div class="toolkit">
+            <span class="mono side__label">Toolkit</span>
+            <div class="pills">
+              <span class="mono pill">Figma</span>
+              <span class="mono pill">Adobe XD</span>
+              <span class="mono pill">Sketch</span>
+              <span class="mono pill">UXPin</span>
+              <span class="mono pill">Claude AI</span>
+              <span class="mono pill">Webflow</span>
+              <span class="mono pill">Framer</span>
+              <span class="mono pill">Notion</span>
+              <span class="mono pill">Illustrator</span>
+              <span class="mono pill">After Effects</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view="work" data-screen-label="Selected work" hidden>
+          <div class="head">
+            <h2>Selected work</h2>
+            <span class="mono head__meta" id="workCount"></span>
+            <div class="filters" id="filters"></div>
+          </div>
+          <div class="work" id="work"></div>
+        </section>
+
+        <section class="view" data-view="personal" data-screen-label="Personal Works" hidden>
+          <div class="head">
+            <h2>Personal Works</h2>
+            <span class="mono head__meta" id="personalCount"></span>
+          </div>
+          <div class="work" id="personal"></div>
+        </section>
+
+        <section class="view view--split" data-view="about" data-screen-label="About" hidden>
+          <div class="card">
+            <div class="mono side__label">About</div>
+            <p class="body">I’m a Designer from Cebu City who enjoys turning complex ideas into clear, intuitive, and meaningful digital experiences. Beyond designing interfaces, I mentor junior and intern designers, helping them build a strong foundation in UI/UX—from typography, font hierarchy, spacing, and visual consistency to user flows, wireframing, prototyping, and usability thinking. I believe that while design tools and trends evolve, strong fundamentals remain at the heart of good design.</p>
+            <p class="body">I work closely with product teams, front-end developers, QA, and other stakeholders to explore ideas, challenge assumptions, and create solutions that genuinely benefit the user. I especially enjoy building and manually prototyping experiences in Figma, where I can carefully think through interactions and user flows before they reach development. I also keep myself updated with emerging design trends and AI-powered tools, exploring how they can make the design process more efficient without losing the human side of design.</p>
+            <p class="body">Outside of work, I enjoy attending design talks and seminars, learning from other creatives, and sharing my own experiences with the design community. When I encounter a creative block, I step away from the screen—usually for a little nature, sightseeing, or a change of scenery. I also enjoy crafting miniature pieces with polymer clay and painting in my free time. For me, creativity doesn’t only happen behind a screen; sometimes the best ideas come from simply stepping away from it.</p>
+            <div class="edu">
+              <div class="mono side__label">Education</div>
+              <p class="body">BS Information Technology<br />Asian College of Technology International Educational Foundation, 2010—2014</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="mono side__label">Design</div>
+            <div class="chips">
+              <span class="chip">Web &amp; mobile app design</span>
+              <span class="chip">User Flows</span>
+              <span class="chip">Competitor Analysis</span>
+              <span class="chip">User Journeys</span>
+              <span class="chip">Wireframing</span>
+              <span class="chip">Prototyping</span>
+              <span class="chip">Design Systems</span>
+              <span class="chip">Claude Code &amp; Design</span>
+              <span class="chip">ChatGPT</span>
+              <span class="chip">Gemini</span>
+              <span class="chip">FigJam</span>
+              <span class="chip">Figma Agent</span>
+              <span class="chip">Figma Motion</span>
+            </div>
+            <div class="meters">
+              <div class="mono side__label">Proficiency</div>
+              <div class="meter"><div class="meter__row"><span>Figma</span><span class="mono">Daily</span></div><div class="meter__track"><i style="width:96%"></i></div></div>
+              <div class="meter"><div class="meter__row"><span>Design systems</span><span class="mono">Owner</span></div><div class="meter__track"><i style="width:90%"></i></div></div>
+              <div class="meter"><div class="meter__row"><span>Prototyping · Framer, UXPin</span><span class="mono">Fluent</span></div><div class="meter__track"><i style="width:82%"></i></div></div>
+              <div class="meter"><div class="meter__row"><span>Adobe CS · motion &amp; graphics</span><span class="mono">Strong</span></div><div class="meter__track"><i class="i--accent" style="width:74%"></i></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view="experience" data-screen-label="Experience" hidden>
+          <div class="card">
+            <div class="head head--flush">
+              <h2>Experience</h2>
+              <span class="mono head__meta">2015 — Now</span>
+            </div>
+            <div class="rows">
+              <div class="row">
+                <p class="mono row__date row__date--now">2023 — NOW</p>
+                <div>
+                  <h3>Senior UI/UX Designer · NTV360</h3>
+                  <p class="body">Leads design for web-based SaaS products end to end, mentors junior designers, and maintains the shared component library.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2023</p>
+                <div>
+                  <h3>Freelance UI/UX Designer</h3>
+                  <p class="body">Wireframes, style guides and design components for client projects, presenting and walking each client through the reasoning behind the design.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2021 — 2022</p>
+                <div>
+                  <h3>UI/UX, Web &amp; Graphics Designer · Håndværker PH</h3>
+                  <p class="body">Wireframes, mock-ups, and prototypes for websites and mobile apps, plus the marketing graphics and motion that supported each release.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2020</p>
+                <div>
+                  <h3>UI/UX Designer · Teravault Software</h3>
+                  <p class="body">Designed a complex web application from scratch in UXPin and Figma, working directly with an international client across time zones.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2019 — 2020</p>
+                <div>
+                  <h3>UI/UX Designer · Blueprint Business Solutions Corp.</h3>
+                  <p class="body">Built designs from scratch against client requirements on CMS platforms, iterating with the team through each round of feedback.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2018 — 2019</p>
+                <div>
+                  <h3>UI/UX Designer · Hurdman Communications</h3>
+                  <p class="body">Designed web application UX and UI — wireframing, prototyping and final screens in Sketch and InVision — presenting and iterating with the team designer and CEO.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2017 — 2018</p>
+                <div>
+                  <h3>Enterprise Web Builder · Mopro</h3>
+                  <p class="body">Selected to design from scratch for US-based enterprise clients, working inside CMS platform constraints alongside international design teams.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2016 — 2017</p>
+                <div>
+                  <h3>Web &amp; Graphics Designer · Sushi Digital</h3>
+                  <p class="body">Designed website landing pages and their mobile views in Photoshop, and converted raster artwork to vector in Illustrator.</p>
+                </div>
+              </div>
+              <div class="row">
+                <p class="mono row__date">2015 — 2016</p>
+                <div>
+                  <h3>Web &amp; Graphics Designer · Proweaver</h3>
+                  <p class="body">Produced logos, flyers, brochures, business cards and website mock-up designs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view="talks" data-screen-label="UX Design &amp; Events" hidden>
+          <div class="head">
+            <h2>UX Design &amp; Events</h2>
+            <span class="mono head__meta">Conferences, meetups and workshops attended</span>
+          </div>
+          <div class="work" id="talks"></div>
+        </section>
+
+        <section class="view" data-view="contact" data-screen-label="Contact" hidden>
+          <div class="contact">
+            <p class="script script--lg">thanks for scrolling this far</p>
+            <h2 class="contact__title">Let's build something impactful together.</h2>
+            <div class="contact__actions">
+              <a class="contact__mail" href="mailto:soriahazel16@gmail.com">soriahazel16@gmail.com</a>
+              <a class="contact__ghost" href="https://www.linkedin.com/in/hazel-sellote-7252653bb/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            </div>
+            <div class="mono contact__meta">
+              <span>© Hazel Sellote 2026</span>
+              <span>Cebu City, Philippines · GMT+8</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="status mono">
+      <span class="status__live"><span class="dot dot--live"></span>Available</span>
+      <span>Cebu City · <span id="clock">—</span></span>
+      <span class="status__hint" id="hint">Press ⌘K to jump anywhere</span>
+    </footer>
+  </div>
+
+  <div class="pane" id="pane" hidden>
+    <div class="pane__scrim" data-close></div>
+    <div class="pane__sheet" role="dialog" aria-modal="true" aria-label="Case study">
+      <div class="pane__top">
+        <span class="mono side__label">Case study</span>
+        <span class="pane__name" id="paneName"></span>
+        <button class="pane__x" type="button" data-close aria-label="Close">✕</button>
+      </div>
+      <div class="pane__body" id="paneBody"></div>
+    </div>
+  </div>
+
+  <div class="preview" id="preview" hidden>
+    <div class="preview__scrim" data-close-preview></div>
+    <div class="preview__sheet" role="dialog" aria-modal="true" aria-label="Project preview">
+      <div class="preview__top">
+        <span class="mono side__label">Preview</span>
+        <span class="preview__name" id="previewName"></span>
+        <span class="mono preview__meta" id="previewMeta"></span>
+        <span class="mono preview__count" id="previewCount"></span>
+        <button class="preview__nav" type="button" id="previewPrev" aria-label="Previous project">‹</button>
+        <button class="preview__nav" type="button" id="previewNext" aria-label="Next project">›</button>
+        <button class="pane__x" type="button" data-close-preview aria-label="Close">✕</button>
+      </div>
+      <div class="preview__body" id="previewBody"></div>
+      <div class="mono preview__foot" id="previewLink"></div>
+    </div>
+  </div>
+
+  <div class="palette" id="palette" hidden>
+    <div class="palette__scrim" data-close-palette></div>
+    <div class="palette__box" role="dialog" aria-modal="true" aria-label="Command palette">
+      <input class="palette__input" id="paletteInput" type="text" placeholder="Search sections and case studies…" autocomplete="off" />
+      <div class="palette__list" id="paletteList"></div>
+      <div class="mono palette__foot"><span>↑↓ Navigate</span><span>↵ Open</span><span>Esc Close</span></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

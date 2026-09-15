@@ -1,0 +1,18 @@
+{
+  "name": "hazel-sellote-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfolio site, built on the Haze Design System.",
+  "scripts": {
+    "build": "node tools/build-css.mjs",
+    "dev": "node tools/build-css.mjs --watch",
+    "serve": "python3 -m http.server 8777",
+    "sync:tokens": "cp ../HazeDesignSystem/tailwind/tokens.generated.css ../HazeDesignSystem/tailwind/theme.generated.css haze/ && echo 'tokens synced from HazeDesignSystem'"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.4.47"
+  }
+}
