@@ -6,10 +6,10 @@ const PROJECTS = [
     role: 'Senior UI/UX Designer', shotHint: 'Component Pantry docs',
     url: 'https://nctv-strapi.onrender.com/overview/overview-installation', host: 'nctv-strapi.onrender.com',
     tags: ['Design systems', 'SaaS'],
-    summary: 'The shared component library behind N-Compass TV\u2019s products \u2014 a team effort between me and the junior designer I mentor, building the 44 components in Figma while teaching them UI/UX, then developed by the front-end team into @ntv360/component-pantry, an installable Angular and Tailwind package with public docs.',
+    summary: 'The shared component library behind N-Compass TV\u2019s products \u2014 44 components built with the junior designer I mentor, teaching them UI/UX as we went.',
     did: [
       'Built the components in Figma as a team with the junior designer I mentor \u2014 states, variants and sizes, coaching them through the UI/UX reasoning behind each decision.',
-      'Handed the library to the front-end team, who developed it into an installable Angular + Tailwind package.',
+      'Handed the library to the front-end team, who published it as @ntv360/component-pantry, an installable Angular + Tailwind package.',
       'Set the colour roles and usage rules the documentation publishes alongside each component.',
       'Kept the Figma source and the shipped components in step as the system grew to v0.7.9.'
     ],

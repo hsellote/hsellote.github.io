@@ -4,3 +4,6 @@ node_modules/
 # local backups, not source
 .backup-pre-designsync/
 style.css.pre-haze
+
+# editor / tool local settings
+.claude/settings.local.json
