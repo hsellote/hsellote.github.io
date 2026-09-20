@@ -1,36 +1,80 @@
 # Hazel Sellote — Portfolio
 
-Static site. No build step: open `index.html` in a browser or drop the folder on Netlify / Vercel / GitHub Pages.
+Static portfolio site, built on the Haze Design System.
+
+**Live:** https://hsellote.github.io
+
+## Layout
 
 ```
-index.html    markup + all copy
-style.css     tokens (:root) and all styling
-script.js     rotating word, scroll reveal, matcha cursor
-assets/       images (see below)
+index.html        page shell and section containers
+script.js         all content (see below) + interactions
+style.css         hand-authored styling, tokens in :root
+haze/             Haze Design System source (Tailwind v4)
+  input.css       entry point — imports tailwindcss + generated tokens
+  *.generated.css colour tokens and @theme mapping, synced from HazeDesignSystem
+dist/haze.css     build output — committed, see "Build" below
+tools/            build-css.mjs
+assets/           images, favicon, resume PDF
 ```
 
-## Images to add (`assets/`)
+## Content lives in `script.js`
 
-Hero collage — square, ~500×500:
-`tile-1.jpg` … `tile-6.jpg`
+The page ships mostly empty containers; `script.js` renders into them from
+data arrays at the top of the file:
 
-Case studies:
-`work-n-compass.jpg` (4:3), `work-handvaerker.jpg` (16:11), `work-teravault.jpg` (16:11)
+| Array      | Renders into | What it is                          |
+| ---------- | ------------ | ----------------------------------- |
+| `PROJECTS` | `#work`      | Case studies — each has a live `url` |
+| `PERSONAL` | `#personal`  | Personal work, mostly Behance links  |
+| `TALKS`    | `#talks`     | UX design events and talks           |
+| `NAV`      | `#nav`       | Sidebar rail                         |
+| `FILTERS`  | `#filters`   | Work-section filter chips            |
+| `WORDS`    | `#rotator`   | Rotating headline words              |
 
-Resume: `hazel-sellote-resume.pdf`
+To add or edit a project, edit the `PROJECTS` array — not the HTML.
 
-Filenames are referenced in `index.html` — rename there if you prefer different ones.
+## Build
 
-## Editing
+There *is* a build step: `dist/haze.css` is compiled from `haze/input.css`
+through Tailwind v4's PostCSS plugin.
 
-Colors, fonts and spacing live in the `:root` block at the top of `style.css`.
-The accent (`--accent: #84B067`) also drives the matcha cursor — `script.js` reads it from CSS.
+```bash
+npm install
+npm run build      # build dist/haze.css once
+npm run dev        # rebuild on change
+npm run serve      # http://localhost:8777
+```
 
-Headline words rotate from `data-words` on `<span class="rotator">` in `index.html`.
+`dist/haze.css` is committed on purpose. GitHub Pages serves this repo from
+`main` at the root with no build step, so the compiled CSS has to be in the
+repo. **Re-run `npm run build` and commit the result whenever you change
+anything under `haze/`** — otherwise the live site keeps serving the old CSS.
 
-The cursor is disabled automatically on touch devices and for visitors with reduced-motion enabled.
+`style.css` is hand-authored and needs no build.
 
-## To do before launch
+## Design tokens
 
-- Swap the LinkedIn `href` in the footer for the real profile URL.
-- Add real project links (each `<article>` in `#work` can wrap in an `<a>`).
+Colour tokens are generated in the sibling
+[HazeDesignSystem](https://github.com/hsellote/HazeDesignSystem) repo. Pull the
+latest in with:
+
+```bash
+npm run sync:tokens
+```
+
+This expects `../HazeDesignSystem` to exist next to this folder. Run
+`npm run build` afterwards.
+
+Site-level values — colours, fonts, spacing — live in the `:root` block at the
+top of `style.css`. The accent (`--accent: #84B067`) also drives the matcha
+cursor, which `script.js` reads from CSS. The cursor is disabled automatically
+on touch devices and for visitors who prefer reduced motion.
+
+## Deploying
+
+Pushing to `main` publishes. GitHub Pages is configured to serve the repository
+root of `main`; a push triggers a rebuild automatically.
+
+Because this repo is named `hsellote.github.io`, it is the account's user site
+and is served at the domain root rather than under a project path.
