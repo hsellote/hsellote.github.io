@@ -28,7 +28,7 @@
 
 <div class="app">
 
-  <aside class="side">
+  <aside class="side" id="siteNav">
     <div class="side__id">
       <img class="side__mark" src="assets/logo.jpg" alt="Hazel Sellote monogram" />
       <div class="side__who">
@@ -59,9 +59,15 @@
     </div>
   </aside>
 
+  <div class="nav-scrim" id="navScrim"></div>
+
   <div class="shell">
 
     <header class="top">
+      <button class="top__burger" type="button" id="navToggle"
+              aria-label="Open navigation" aria-expanded="false" aria-controls="siteNav">
+        <span aria-hidden="true">☰</span>
+      </button>
       <div class="top__crumb">
         <span class="mono top__root">Portfolio /</span>
         <span class="top__view" id="viewLabel">Overview</span>

@@ -173,6 +173,7 @@ p { margin: 0; }
   padding: 7px 10px 7px 12px; background: var(--panel);
   border: 1px solid var(--line); border-radius: 9px;
   color: var(--muted); font-family: var(--sans); font-size: 12.5px;
+  flex: none; white-space: nowrap;
 }
 .top__search:hover { border-color: var(--line-strong); color: var(--body); }
 .top__search kbd { font-size: 9.5px; padding: 2px 5px; border: 1px solid var(--line); border-radius: 5px; background: var(--tint-2); }
@@ -186,6 +187,18 @@ p { margin: 0; }
 .top__theme:hover { border-color: var(--green-ink); color: var(--green-ink); }
 .top__cta { padding: 8px 14px; background: var(--ink); color: var(--bg); border-radius: 9px; font-size: 12.5px; font-weight: 500; white-space: nowrap; }
 .top__cta:hover { background: var(--green-ink); color: var(--on-accent); }
+
+/* drawer trigger + backdrop: mobile-only, hidden until the breakpoint */
+.top__burger {
+  display: none;
+  width: 34px; height: 34px; flex: none;
+  align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 9px;
+  background: var(--panel); color: var(--ink-3);
+  font-size: 15px; line-height: 1;
+}
+.top__burger:hover { border-color: var(--green-ink); color: var(--green-ink); }
+.nav-scrim { display: none; }
 
 .canvas {
   overflow-y: auto; overflow-x: hidden;
@@ -436,17 +449,75 @@ button { cursor: pointer; }
 
 /* ---------- narrow screens ---------- */
 
-@media (max-width: 720px) {
-  .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: auto; min-height: 100vh; overflow: visible; }
-  .side { flex-direction: row; flex-wrap: wrap; align-items: center; border-right: none; border-bottom: 1px solid var(--line); overflow: visible; }
-  .side__group, .side__foot { margin: 0; }
-  .nav, .rail { flex-direction: row; flex-wrap: wrap; }
-  .side__group--files { flex: none; }
-  .rail { overflow: visible; }
+/* tight widths above the drawer breakpoint: shed optional top-bar chrome */
+@media (max-width: 900px) {
+  .top__root { display: none; }
   .top__cta { display: none; }
-  .canvas { padding: 16px 14px 32px; }
+}
+
+@media (max-width: 720px) {
+  /* the shell stops being a fixed-height two-column grid; the page itself scrolls */
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+  /* the implicit column would otherwise size to content and overflow the viewport */
+  .shell { height: auto; grid-template-rows: auto auto auto; grid-template-columns: minmax(0, 1fr); overflow: visible; }
+
+  /* the sidebar becomes an off-canvas drawer instead of a wrapping strip */
+  .side {
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    z-index: 60;
+    width: min(84vw, 300px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-right: 1px solid var(--line);
+    transform: translateX(-100%);
+    transition: transform 0.26s ease;
+  }
+  body.nav-open .side { transform: translateX(0); }
+
+  .nav-scrim {
+    display: block;
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.26s ease;
+  }
+  body.nav-open .nav-scrim { opacity: 1; pointer-events: auto; }
+
+  /* lock the page behind the open drawer */
+  body.nav-open { overflow: hidden; }
+  html:has(body.nav-open) { overflow: hidden; }
+
+  /* top bar: drawer trigger in, desktop-only affordances out */
+  .top {
+    position: sticky; top: 0; z-index: 40;
+    gap: 10px; padding: 0 12px;
+  }
+  .top__burger { display: flex; }
+  .top__root, .top__count, .top__cta { display: none; }
+  .top__search { margin-left: auto; }
+  .top__search kbd { display: none; }
+
+  .canvas { overflow: visible; min-width: 0; padding: 16px 14px 32px; }
+  .hero { padding: 20px 16px; }
   .preview { padding: 0; }
   .preview__sheet { border: none; border-radius: 0; }
   .preview__body { padding: 12px; }
   .preview__shots--grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* phones: anything multi-column collapses to a single column */
+@media (max-width: 520px) {
+  .work, .posts, .tiles, .view--split { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .preview__shots--grid { grid-template-columns: minmax(0, 1fr); }
+  .stats { gap: 8px; }
 }

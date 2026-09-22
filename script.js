@@ -728,5 +728,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ---------- mobile navigation drawer ---------- */
+  (() => {
+    const burger = $('#navToggle');
+    const scrim = $('#navScrim');
+    const side = $('#siteNav');
+    if (!burger || !scrim || !side) return;
+
+    const setOpen = (open) => {
+      document.body.classList.toggle('nav-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    };
+
+    burger.addEventListener('click', () => {
+      setOpen(!document.body.classList.contains('nav-open'));
+    });
+    scrim.addEventListener('click', () => setOpen(false));
+
+    /* picking a destination closes the drawer behind you */
+    side.addEventListener('click', (e) => {
+      if (e.target.closest('.nav__item, .rail__item, .btn-resume')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    /* never leave the page scroll-locked if the viewport grows past the breakpoint */
+    window.matchMedia('(min-width: 721px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  })();
+
   mountCursor();
 });
