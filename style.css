@@ -320,6 +320,7 @@ p { margin: 0; }
   border-top: 1px solid var(--line); background: var(--tint);
   font-size: 9.5px; color: var(--muted); overflow: hidden;
 }
+.status > span { white-space: nowrap; }
 .status__live { display: flex; align-items: center; gap: 6px; }
 .status__live .dot { width: 6px; height: 6px; }
 .status__hint { margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -504,6 +505,8 @@ button { cursor: pointer; }
   .top__root, .top__count, .top__cta { display: none; }
   .top__search { margin-left: auto; }
   .top__search kbd { display: none; }
+
+  .status__hint { display: none; }
 
   .canvas { overflow: visible; min-width: 0; padding: 16px 14px 32px; }
   .hero { padding: 20px 16px; }
