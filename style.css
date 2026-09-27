@@ -64,7 +64,7 @@ h1, h2, h3, h4 { font-family: var(--display); letter-spacing: -0.01em; margin: 0
 p { margin: 0; }
 .mono { font-family: var(--mono); letter-spacing: 0.11em; text-transform: uppercase; }
 .accent { color: var(--green-ink); }
-.script { font-family: var(--script); font-size: 13px; letter-spacing: 0.02em; color: var(--green-ink); }
+.script { font-family: var(--script); font-size: 14px; letter-spacing: 0.02em; color: var(--green-ink); }
 /* only used on the accent slab, so it takes that slab's foreground */
 .script--lg { font-size: 15px; color: var(--on-accent); }
 .body { font-size: 14px; line-height: 1.65; color: var(--body); text-wrap: pretty; }
@@ -220,23 +220,20 @@ p { margin: 0; }
 
 /* ---------- overview ---------- */
 
-.hero { display: flex; flex-direction: column; gap: 14px; padding: 26px; }
-.hero__eyebrow { font-size: 9.5px; letter-spacing: 0.15em; color: var(--faint); }
-.hero__title { font-weight: 600; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: pretty; }
+.hero { display: flex; flex-direction: column; gap: 18px; padding: 36px; }
+.hero__eyebrow { font-size: 11px; letter-spacing: 0.15em; color: var(--faint); }
+.hero__title { font-weight: 600; font-size: clamp(30px, 4.6vw, 56px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: pretty; }
 .caret { color: var(--green-ink); opacity: 0.5; }
-.hero__sub { font-size: 15px; line-height: 1.6; color: var(--body); max-width: 60ch; text-wrap: pretty; }
-.stats { margin-top: 4px; padding-top: 16px; border-top: 1px solid var(--line-soft); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.stat__v { font-family: var(--display); font-weight: 600; font-size: 22px; }
-.stat__k { font-size: 9px; letter-spacing: 0.12em; color: var(--faint); margin-top: 2px; }
+.hero__sub { font-size: 17px; line-height: 1.6; color: var(--body); max-width: 58ch; text-wrap: pretty; }
+.stats { margin-top: 4px; padding-top: 20px; border-top: 1px solid var(--line-soft); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+/* fluid: the widest value (GMT+8) must not clip in a ~79px column at 320px */
+.stat__v { font-family: var(--display); font-weight: 600; font-size: clamp(21px, calc(2.6vw + 13px), 30px); }
+.stat__k { font-size: 10px; letter-spacing: 0.12em; color: var(--faint); margin-top: 2px; }
 
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-.tile { margin: 0; height: 180px; border-radius: 14px; overflow: hidden; background: var(--tint); border: 1px solid var(--line); }
-.tile a { display: block; width: 100%; height: 100%; }
-.tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .toolkit { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.pill { font-size: 10px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 20px; color: var(--ink-3); background: var(--panel); text-transform: none; letter-spacing: 0.04em; }
+.pill { font-size: 11px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 20px; color: var(--ink-3); background: var(--panel); text-transform: none; letter-spacing: 0.04em; }
 
 /* ---------- work ---------- */
 
@@ -510,7 +507,7 @@ button { cursor: pointer; }
   .status__hint { display: none; }
 
   .canvas { overflow: visible; min-width: 0; padding: 16px 14px 32px; }
-  .hero { padding: 20px 16px; }
+  .hero { padding: 24px 18px; }
   .preview { padding: 0; }
   .preview__sheet { border: none; border-radius: 0; }
   .preview__body { padding: 12px; }
@@ -519,7 +516,7 @@ button { cursor: pointer; }
 
 /* phones: anything multi-column collapses to a single column */
 @media (max-width: 520px) {
-  .work, .posts, .tiles, .view--split { grid-template-columns: minmax(0, 1fr); }
+  .work, .posts, .view--split { grid-template-columns: minmax(0, 1fr); }
   .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .preview__shots--grid { grid-template-columns: minmax(0, 1fr); }
