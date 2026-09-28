@@ -41,7 +41,7 @@ const PROJECTS = [
     stats: [['2', 'Platforms'], ['Solo', 'Design team'], ['2 yrs', 'Engagement']]
   },
   {
-    id: 'minbolig', shot: 'assets/work-minbolig.png', name: 'Min Bolig & MB Pro', mode: 'Client', years: 'Live app',
+    id: 'minbolig', shot: 'assets/work-minbolig.png', name: 'Min Bolig & MB Pro', mode: 'Team', years: 'Live app',
     role: 'UI/UX Designer', shotHint: 'Min Bolig and MB Pro screens',
     url: 'https://mbpro.haandvaerker.dk/', host: 'mbpro.haandvaerker.dk',
     tags: ['Mobile', 'Web app', 'SaaS', 'User flows'],
@@ -55,7 +55,7 @@ const PROJECTS = [
     stats: [['2', 'Sides of the market'], ['50', 'Screens designed'], ['DK', 'Market']]
   },
   {
-    id: 'partnerlogin', shot: 'assets/work-partnerlogin.png', name: 'Håndværker Partner Login', mode: 'Client', years: 'Live app',
+    id: 'partnerlogin', shot: 'assets/work-partnerlogin.png', name: 'Håndværker Partner Login', mode: 'Team', years: 'Live app',
     role: 'UI/UX Designer', shotHint: 'iOS partner app screens',
     url: 'https://apps.apple.com/nl/app/h%C3%A5ndv%C3%A6rker-dk-partnerlogin/id1529848721?l=en-GB',
     host: 'App Store · iOS',
