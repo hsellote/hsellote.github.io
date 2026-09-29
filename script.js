@@ -214,6 +214,14 @@ const NAV = [
 /* Personal projects — concepts and studies from behance.net/hazelnut11. */
 const PERSONAL = [
   {
+    id: 'haze-ds', shot: 'assets/personal-haze-ds.png', name: 'Haze Design System', mode: 'Solo', years: 'Live',
+    role: 'Personal work', shotHint: 'Haze Design System docs',
+    url: 'https://haze-design-system.vercel.app/', host: 'haze-design-system.vercel.app', linkLabel: 'View the docs \u2197',
+    shots: ['assets/personal/haze-ds/01.png', 'assets/personal/haze-ds/02.png', 'assets/personal/haze-ds/03.png'],
+    tags: ['Design systems', 'UI/UX', 'Web design'],
+    summary: "My own design system \u2014 and the one this site is built on. Five colour ramps and 22 semantic role tokens that swap for dark mode, every step solved by binary-searching OKLCH lightness to a target WCAG ratio so the contrast is structural rather than lucky."
+  },
+  {
     id: 'qahoi', shot: 'assets/personal-qahoi.png', name: 'Qahoi Cebu', mode: 'Concept', years: '2020',
     layout: 'grid',
     role: 'Personal work', shotHint: 'Qahoi Cebu concept',
