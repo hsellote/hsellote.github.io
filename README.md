@@ -67,9 +67,7 @@ This expects `../HazeDesignSystem` to exist next to this folder. Run
 `npm run build` afterwards.
 
 Site-level values — colours, fonts, spacing — live in the `:root` block at the
-top of `style.css`. The accent (`--accent: #84B067`) also drives the matcha
-cursor, which `script.js` reads from CSS. The cursor is disabled automatically
-on touch devices and for visitors who prefer reduced motion.
+top of `style.css`.
 
 ## Deploying
 

@@ -608,76 +608,6 @@ function openPalette() {
 
 function closePalette() { $('#palette').hidden = true; }
 
-/* ---------- cute matcha cursor + pastel sprinkles ---------- */
-
-function mountCursor() {
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  const layer = el('div');
-  layer.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden';
-  const cup = el('div');
-  cup.style.cssText = 'position:absolute;top:0;left:0;width:38px;height:38px;will-change:transform;transition:transform .12s ease-out';
-  cup.innerHTML = '<svg viewBox="0 0 56 56" width="38" height="38">' +
-    '<ellipse cx="28" cy="50" rx="13" ry="2.8" fill="#1B2415" opacity=".12"/>' +
-    '<path d="M14 46C12 30 18 16 40 10c4 20-6 33-24 36z" fill="#9CC97A" stroke="#3F5C2E" stroke-width="2" stroke-linejoin="round"/>' +
-    '<path d="M38 12C26 20 19 31 15.6 44.6" stroke="#3F5C2E" stroke-width="2" stroke-linecap="round" fill="none"/>' +
-    '<g stroke="#4E7A34" stroke-width="1.5" stroke-linecap="round" fill="none">' +
-    '<path d="M22.4 26.6c3.4.3 6.6-.3 9.4-1.8"/><path d="M18.6 34.4c3.6.3 7-.4 10-2"/><path d="M28.8 20c2.6.5 5.2.3 7.6-.6"/></g>' +
-    '<circle cx="21.6" cy="38.6" r="1.6" fill="#2F4A22"/><circle cx="28.4" cy="34.6" r="1.6" fill="#2F4A22"/>' +
-    '<path d="M23.6 41.4c1.3.6 2.7.2 3.6-.9" stroke="#2F4A22" stroke-width="1.5" stroke-linecap="round" fill="none"/>' +
-    '<ellipse cx="17.8" cy="40.4" rx="2" ry="1.3" fill="#F2A0A0" opacity=".5" transform="rotate(-35 17.8 40.4)"/>' +
-    '<ellipse cx="31.6" cy="30.4" rx="2" ry="1.3" fill="#F2A0A0" opacity=".5" transform="rotate(-35 31.6 30.4)"/>' +
-    '<path d="M43.4 8.6c-1.4 1.4-3 2.4-4.8 3.2" stroke="#4E7A34" stroke-width="2" stroke-linecap="round" fill="none"/>' +
-    '</svg>';
-  layer.appendChild(cup);
-  document.body.appendChild(layer);
-
-  const SHAPES = ['flower', 'circle', 'star', 'square'];
-  const COLORS = ['#FFB3C7', '#FFD9A0', '#FFF3A3', '#B8E3C0', '#A8D8F0', '#C9B6F5', '#FFC2E2', '#B6EADA'];
-
-  const sprinkle = (shape, c) => {
-    if (shape === 'circle') return '<circle cx="6" cy="6" r="4.4" fill="' + c + '"/>';
-    if (shape === 'square') return '<rect x="2" y="2" width="8" height="8" rx="1.8" fill="' + c + '"/>';
-    if (shape === 'star') return '<path d="M6 .6l1.35 3.75L11.2 6 7.35 7.65 6 11.4 4.65 7.65.8 6l3.85-1.65z" fill="' + c + '"/>';
-    let p = '';
-    for (let i = 0; i < 5; i++) {
-      const a = (i / 5) * Math.PI * 2;
-      p += '<circle cx="' + (6 + Math.cos(a) * 2.7).toFixed(2) + '" cy="' + (6 + Math.sin(a) * 2.7).toFixed(2) + '" r="2.3" fill="' + c + '"/>';
-    }
-    return p + '<circle cx="6" cy="6" r="1.6" fill="#FFF3A3"/>';
-  };
-
-  let mx = window.innerWidth / 2, my = window.innerHeight / 2, cx = mx, cy = my, last = 0;
-
-  const spawn = (x, y) => {
-    const n = el('div');
-    const size = 10 + Math.random() * 9;
-    n.style.cssText = 'position:absolute;left:' + x + 'px;top:' + y + 'px;width:' + size + 'px;height:' + size + 'px;margin:-' + size / 2 + 'px 0 0 -' + size / 2 + 'px';
-    n.innerHTML = '<svg viewBox="0 0 12 12" width="100%" height="100%">' +
-      sprinkle(SHAPES[(Math.random() * SHAPES.length) | 0], COLORS[(Math.random() * COLORS.length) | 0]) + '</svg>';
-    layer.appendChild(n);
-    const dx = (Math.random() - 0.5) * 46, dy = 26 + Math.random() * 40;
-    n.animate([
-      { transform: 'translate(0,0) rotate(0deg) scale(1)', opacity: 1 },
-      { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(' + ((Math.random() - 0.5) * 260).toFixed(0) + 'deg) scale(.35)', opacity: 0 }
-    ], { duration: 780 + Math.random() * 320, easing: 'cubic-bezier(.25,.6,.3,1)' }).onfinish = () => n.remove();
-  };
-
-  window.addEventListener('mousemove', (e) => {
-    mx = e.clientX; my = e.clientY;
-    const now = performance.now();
-    if (now - last > 70) { last = now; spawn(mx, my); }
-  });
-
-  (function frame() {
-    cx += (mx - cx) * 0.22;
-    cy += (my - cy) * 0.22;
-    const tilt = Math.max(-14, Math.min(14, (mx - cx) * 0.9));
-    cup.style.transform = 'translate(' + (cx - 11) + 'px,' + (cy - 9) + 'px) rotate(' + tilt.toFixed(1) + 'deg)';
-    requestAnimationFrame(frame);
-  })();
-}
-
 /* ---------- boot ---------- */
 
 function tickClock() {
@@ -768,6 +698,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.matches) setOpen(false);
     });
   })();
-
-  mountCursor();
 });
