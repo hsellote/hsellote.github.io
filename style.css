@@ -231,9 +231,6 @@ p { margin: 0; }
 .stat__k { font-size: 10px; letter-spacing: 0.12em; color: var(--faint); margin-top: 2px; }
 
 
-.toolkit { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.pill { font-size: 11px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 20px; color: var(--ink-3); background: var(--panel); text-transform: none; letter-spacing: 0.04em; }
 
 /* ---------- work ---------- */
 
