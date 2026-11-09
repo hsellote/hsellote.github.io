@@ -667,6 +667,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ---------- design-process tabs ---------- */
+  (() => {
+    const tabs = $('#processTabs');
+    if (!tabs) return;
+    const buttons = [...tabs.querySelectorAll('[data-ptab]')];
+    const panels = [...document.querySelectorAll('[data-ppanel]')];
+
+    const show = (name) => {
+      buttons.forEach((b) => {
+        const on = b.dataset.ptab === name;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-selected', String(on));
+      });
+      panels.forEach((p) => { p.hidden = p.dataset.ppanel !== name; });
+    };
+
+    tabs.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-ptab]');
+      if (b) show(b.dataset.ptab);
+    });
+
+    /* left/right arrows move between tabs, as a tablist should */
+    tabs.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const i = buttons.indexOf(document.activeElement);
+      if (i === -1) return;
+      e.preventDefault();
+      const next = buttons[(i + (e.key === 'ArrowRight' ? 1 : buttons.length - 1)) % buttons.length];
+      next.focus();
+      show(next.dataset.ptab);
+    });
+  })();
+
   /* ---------- mobile navigation drawer ---------- */
   (() => {
     const burger = $('#navToggle');
