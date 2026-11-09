@@ -235,7 +235,17 @@ p { margin: 0; }
 .head--flush { margin-bottom: 18px; }
 
 /* design-process tabs: reuse the .filter pill, just a left-aligned strip */
-.proc-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.proc-tabs { display: flex; gap: 2px; flex-wrap: wrap; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+.proc-tab {
+  padding: 9px 14px; margin-bottom: -1px;
+  background: none; border: none; border-bottom: 2px solid transparent;
+  font-family: var(--sans); font-size: 13px; color: var(--muted);
+  transition: color 0.16s, border-color 0.16s;
+}
+.proc-tab:hover { color: var(--ink); }
+.proc-tab.is-on { color: var(--green-ink); border-bottom-color: var(--green-ink); font-weight: 500; }
+/* the pill's border carried focus before; keep a visible ring now it is gone */
+.proc-tab:focus-visible { outline: 2px solid var(--green-ink); outline-offset: -2px; border-radius: 6px; }
 .proc-files { display: flex; flex-direction: column; gap: 22px; }
 .proc-files__intro { font-size: 13.5px; line-height: 1.6; color: var(--ink-3); }
 .proc-file { margin: 0; min-width: 0; }
