@@ -204,11 +204,12 @@ const TALKS = [
 const NAV = [
   { id: 'overview', label: 'Overview', num: '01', count: '' },
   { id: 'work', label: 'Selected work', num: '02', count: '12' },
-  { id: 'personal', label: 'Personal Works', num: '03', count: '14' },
-  { id: 'about', label: 'About', num: '04', count: '' },
-  { id: 'experience', label: 'Experience', num: '05', count: '09' },
-  { id: 'talks', label: 'UX Design & Events', num: '06', count: '05' },
-  { id: 'contact', label: 'Contact', num: '07', count: '' }
+  { id: 'personal', label: 'Personal Works', num: '03', count: '15' },
+  { id: 'process', label: 'Design Process', num: '04', count: '05' },
+  { id: 'about', label: 'About', num: '05', count: '' },
+  { id: 'experience', label: 'Experience', num: '06', count: '09' },
+  { id: 'talks', label: 'UX Design & Events', num: '07', count: '05' },
+  { id: 'contact', label: 'Contact', num: '08', count: '' }
 ];
 
 /* Personal projects — concepts and studies from behance.net/hazelnut11. */
